@@ -1,0 +1,40 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = ["src"]
+
+[project]
+name = "edc_dashbard"
+version = "0.1.0"
+authors = [
+  { name="Ioana Duta", email="duta.ioana@gmail.com" },
+]
+description = "A website for me (Iond my projects"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "streamlit==1.44.0",
+  "firebase==4.0.1",
+  "firebase_admin==6.7.0",
+  "pandas==2.2.3",
+  "plotly==6.0.1",
+  "setuptools==78.1.0",
+  "numpy==2.2.4"
+  ]
+
+[project.urls]
+"Homepage" = "https://github.com/Oxford-Centre-for-Global-Epilepsy/EDCDashboard"
+"Bug Tracker" = "https://github.com/Oxford-Centre-for-Global-Epilepsy/EDCDashboard/issues"
+
+[project.optional-dependencies]
+data = [
+    "fastjsonschema==2.21.1",
+    "s3fs",
+    "jsonref==1.1.0",
+    ]
