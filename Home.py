@@ -41,6 +41,18 @@ _Nuffield Department of Women's and Reproductive Health, University of Oxford, U
     - First Class Honours (combined Bachelor's and Master's degree)
     - Thesis: _The Spread of Information about COVID-19 on Twitter_
 """)
+
+        st.markdown("""
+**Selected technical skills**
+- **Programming**: Python, R, MATLAB, SQL
+- **Packages**: NumPy, Pandas, SciPy, NetworkX, TensorFlow, SKLearn, Tweepy, Firebase API, PyODBC
+- **Data visualisation**: Matplotlib, Seaborn, Plotly, Gephi, Altair, PlotNine/ggplot2
+- **Machine learning**: Scikit-learn, TensorFlow, PyTorch
+- **Other**: Git, Docker, Streamlit, LaTeX
+- **Modelling & ML**: generalised & mixed linear models; supervised & unsupervised learning; neural networks & CNNs; network & graph theory; data visualisation
+- **IT & tools**: Linux & MacOS CLI; git, GitHub & GitLab (inc. pages, actions & pipelines); LaTeX;
+MS Office Suite; Google Colab; Adobe Creative Cloud
+""")
     with tabs[1]:
         st.markdown("### Projects")
 
