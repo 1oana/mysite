@@ -6,7 +6,7 @@ st.title("Ioana's Portfolio")
 tabs = st.tabs(["Me", "My projects"])
 with tabs[0]:
     st.markdown("""
-    My name is [Ioana](https://www.linkedin.com/in/ioana-duta/) and I made this website as a little
+    Hi, I'm [Ioana](https://www.linkedin.com/in/ioana-duta/)! I made this website as a little
     portfolio. My name can be confusing to pronounce, so I usually tell people it 'rhymes with
     iguana', hence the URL.
 
@@ -46,13 +46,14 @@ _Nuffield Department of Women's and Reproductive Health, University of Oxford, U
 
         project_tabs = st.tabs(["Papers and thesis", "Other projects"])
         with project_tabs[0]:
-
             st.markdown("""
-                    My Google Scholar profile is available [here](https://scholar.google.co.uk/citations?user=d-2LGu4AAAAJ&hl=en).
+                    My Google Scholar profile is available
+                    [here](https://scholar.google.co.uk/citations?user=d-2LGu4AAAAJ&hl=en).
             """)
 
             thesis_expander = st.expander(
-                "**Master's project 2022: [_The Spread of Information about COVID-19 on Twitter_](https://github.com/1oana/Masters_thesis)**"
+                "**Master's project 2022: [_The Spread of Information about COVID-19 \
+                    on Twitter_](https://github.com/1oana/Masters_thesis)**"
             )
             with thesis_expander:
                 st.markdown("""
@@ -79,16 +80,18 @@ _Nuffield Department of Women's and Reproductive Health, University of Oxford, U
                     - Network analysis: NetworkX, Gephi
 
                     The project was supervised by
-                    [Dr. Prasun K Ray](https://profiles.imperial.ac.uk/p.ray/) and
-                    submitted as part of my Master's degree in Mathematics at Imperial College London.
+                    [Dr. Prasun K Ray](https://profiles.imperial.ac.uk/p.ray/)
+                    and submitted as part of my Master's degree in Mathematics
+                    at Imperial College London.
 
                     The code and writeup is available on my
                     [GitHub](https://github.com/1oana/Masters_thesis).
                 """)
 
             gen_paper_expander = st.expander(
-                "**Paper: [_Evaluating the generalisability of region-naïve machine learning algorithms for \
-                    the identification of epilepsy in low-resource settings_](https://doi.org/10.1371/journal.pdig.0000491)**"
+                "**Paper: [_Evaluating the generalisability of region-naïve machine learning\
+                    algorithms for the identification of epilepsy in \
+                        low-resource settings_](https://doi.org/10.1371/journal.pdig.0000491)**"
             )
 
             with gen_paper_expander:
@@ -97,7 +100,7 @@ _Nuffield Department of Women's and Reproductive Health, University of Oxford, U
                     Evaluating the generalisability of region-naïve machine learning algorithms for
                     the identification of epilepsy in low-resource settings.
                     PLOS Digital Health 4(2): e0000491. https://doi.org/10.1371/journal.pdig.0000491
-                    
+
                     _Authors' Summary_:
                     Epilepsy disproportionately affects people in low to middle income countries
                     (LMICs). Socioeconmic disadvantages make it hard to access diagnosis and
@@ -128,8 +131,8 @@ _Nuffield Department of Women's and Reproductive Health, University of Oxford, U
 
             with gpt_paper_expander:
                 st.markdown("""
-                    Bachmann, M., Duta, I., Mazey, E. et al. Exploring the capabilities of ChatGPT in
-                    women's health: obstetrics and gynaecology. 
+                    Bachmann, M., Duta, I., Mazey, E. et al. Exploring the capabilities of ChatGPT
+                    in women's health: obstetrics and gynaecology.
                     npj Womens Health 2, 26 (2024). https://doi.org/10.1038/s44294-024-00028-w
 
                     _Abstract_:
