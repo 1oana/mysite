@@ -1,5 +1,4 @@
 import streamlit as st
-import pages.project_1 as p1
 import subsections as sub
 
 st.title("Ioana's Portfolio")
