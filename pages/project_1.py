@@ -1,4 +1,5 @@
 import visualisations as viz
+import details as dt
 
 
 def load_data(filename):
@@ -26,8 +27,8 @@ def about():
     practice.
 
     The data is from the [Mastocytosis Patient Survey](kaggle.com/datasets/benroshan/mastocytosis-patient-survey)
-    and contains survey data from patients with mastocytosis, a rare disease that affects the
-    mast cells in the body. The survey includes questions about symptoms, demographics, and
+    on Kaggle and contains survey data from patients with mastocytosis, a rare disease that affects
+    the mast cells in the body. The survey includes questions about symptoms, demographics, and
     comorbidities.
     """)
 
@@ -71,22 +72,64 @@ def demogs(data):
 
 def qc(data):
     st.subheader("Quality Control")
-    st.markdown("""This section describes quality control. It
+    st.markdown("""This section describes quality control. The specific checks 
+    were devoled over time in collaboration with the fieldworkers administering the screening tool.
     """)
     qc_tabs = st.tabs(["ID checks", "Personnel Management", "Time monitoring"])
     with qc_tabs[0]:
-        st.write("Placeholder for ID checks")
+        st.write("""During this deployment, each record was associated with a unique ID.
+        This ID was linked to the medical records of the patient, and was used to
+        link to clinical outcomes and other data.
+        It was therefore crucial that the IDs were unique and correctly assigned, otherwise
+        the data would be unusable. However, we were unable to allow IDs to be input in any
+        other way than manual, introducing the possbility of human error.
+        This section describes the checks that were performed to ensure the quality of the 
+        IDs in the dataset. It was necessary to provide minimal information to the site leads
+        such that errors could be corrected without compromising participant anonymity.
+        *This section is based on data I fabricated.*
+                 """)
 
         unexpected_ids_expander = st.expander("Unexpected IDs")
         with unexpected_ids_expander:
-            st.write("Placeholder for unexpected IDs")
+            st.write("""
+        Prior to rollout, we asked the study sites to provide a list of IDs corresponding to
+        the participants they expected to screen. We would flag any outliers with the necessary 
+        information for correction.
+            """)
+            # print dataframe
+            st.dataframe(
+                data.loc[~data.Participant_ID.isin(dt.MASTO_IDS), dt.MASTO_ANON_COLS]
+            )
 
         duplicate_ids_expander = st.expander("Duplicate IDs")
         with duplicate_ids_expander:
-            st.write("Placeholder for duplicate IDs")
+            st.write("""
+            Here we flag duplicated IDs. This may have been caused in error due to a connection issue,
+            or due to human error. It's important to flag which one is correct, or if both are.
+                     """)
+            duplicated_ids = sorted(data.Participant_ID)
+            duplicated_ids = [
+                x
+                for n, x in enumerate(duplicated_ids)
+                if x in duplicated_ids[:n]
+            ]
+            if len(duplicated_ids) > 0:
+                st.dataframe(
+                    data.loc[
+                        data.Participant_ID.isin(duplicated_ids), dt.MASTO_ANON_COLS
+                    ]
+                )
+            else:
+                st.write("No duplicated IDs to show")
 
     with qc_tabs[1]:
-        st.write("Placeholder for Personnel Management")
+        st.write("""
+        This section was implemented because we almost exclusively liaised with managers
+        and site leads, rather than the fieldworkers themselves. This monitoring enabled
+        them to monitor the performance of their fieldworkers, and to identify any issues
+        which we could not as we lacked the context to do so.
+        *This section is based on data I fabricated (which may be clear from the names).*
+                 """)
 
         hcw_survey_expander = st.expander("Surveys by person")
         with hcw_survey_expander:

@@ -13,12 +13,12 @@ def bio():
 
     What has excited me most about my work has been the variety: of data, of challenges, of
     collaborators... I enjoy the challenge of cleaning messy data and using it to find answers (or
-    even just more questions) . I also enjoy the process of communicating my work to a diverse
+    even just more questions). I also enjoy the process of communicating my work to a diverse
     audience and the opportunity to collaborate with and learn from a wide range of people.
     I am especially passionate about using the resources available to us in the global north to
     make a positive impact around the world.
 
-    In my spare time I enjoy drawing, making my own jumpers, rock climbing, and staying active.
+    In my spare time I enjoy drawing, making my own t-shirts, rock climbing, and staying active.
     I am also a lapsed saxophonist, and trying my level best to read The Lord of the Rings.
     """)
 
