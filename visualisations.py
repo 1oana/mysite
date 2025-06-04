@@ -60,3 +60,38 @@ def display_histogram(dset, column_to_count, column_counts, bin_width=None, colo
     )
     fig.update_traces(marker=dict(line=dict(width=0)))
     st.plotly_chart(fig)
+
+
+def display_bar_plot_with_colour(dset, column_to_count, column_counts, color_col):
+    dset_stats = (
+        dset.loc[:, [column_to_count, color_col]]
+        .value_counts()
+        .to_frame(name=column_counts)
+        .rename_axis([column_to_count, color_col])
+    )
+
+    fig = px.bar(
+        dset_stats.reset_index(),
+        x=column_to_count,
+        y=column_counts,
+        color=color_col,
+        title="",
+    )
+    fig.update_traces(marker=dict(line=dict(width=0)))
+    st.plotly_chart(fig)
+
+
+def display_cumulative_plot(dset, column_to_count, column_counts, count_col):
+    # Create a cumulative sum of the counts
+    dset_cumul = (
+        
+    )
+
+    fig = px.line(
+        dset_stats.reset_index(),
+        x=column_to_count,
+        y=column_counts,
+        color=count_col,
+        title="",
+    )
+    st.plotly_chart(fig)

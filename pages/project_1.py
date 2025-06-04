@@ -64,7 +64,12 @@ def demogs(data):
             )
 
     with demogs_tabs[1]:
-        st.write("Placeholder for Diagnoses: by day, cumulative plot")
+        viz.display_cumulative_plot(
+            data,
+            column_to_count="Mastocytosis_Diagnosis_Status",
+            column_counts="Diagnosis Count",
+            count_col="HCW"
+        )
 
     with demogs_tabs[2]:
         st.write("Placeholder for Symptoms")
@@ -133,18 +138,38 @@ def qc(data):
 
         hcw_survey_expander = st.expander("Surveys by person")
         with hcw_survey_expander:
-            st.write("Placeholder for personnel management")
+            viz.display_bar_chart(
+                data,
+                column_to_count="HCW",
+                column_counts="Survey Count",
+            )
 
         hcw_day_expander = st.expander("Surveys by person/day")
         with hcw_day_expander:
-            st.write("Placeholder for personnel management")
+            viz.display_bar_plot_with_colour(
+                data,
+                column_to_count="Date",
+                column_counts="Survey Date",
+                color_col="HCW",
+            )
 
         hcw_diag_expander = st.expander("Diagnosis ratio")
         with hcw_diag_expander:
-            st.write("Placeholder for personnel management")
+            viz.display_bar_plot_with_colour(
+                data,
+                column_to_count="Mastocytosis_Diagnosis_Status",
+                column_counts="Diagnosis Ratio",
+                color_col="HCW",
+            )
 
     with qc_tabs[2]:
-        st.write("Placeholder for Time monitoring")
+        st.write("""Our app was designed to be very user-friendly with a simple questionnaire. 
+        However, we could monitor the time taken to complete a survey
+        once it was uploaded. This was useful to identify any issues with the app, or with the
+        fieldworkers themselves. We could also use this to identify any issues with the data
+        collection process, such as if the fieldworkers were not collecting the data correctly.
+        *This section is based on data I fabricated.*
+        """)
 
 
 def modelling(data):
