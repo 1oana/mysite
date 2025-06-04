@@ -84,11 +84,15 @@ def display_bar_plot_with_colour(dset, column_to_count, column_counts, color_col
 def display_cumulative_plot(dset, column_to_count, column_counts, count_col):
     # Create a cumulative sum of the counts
     dset_cumul = (
-        
+        dset[column_to_count]
+        .value_counts()
+        .to_frame(name=column_counts)
+        .rename_axis(column_to_count)
+        .sort_index()
     )
 
     fig = px.line(
-        dset_stats.reset_index(),
+        dset_cumul.reset_index(),
         x=column_to_count,
         y=column_counts,
         color=count_col,
