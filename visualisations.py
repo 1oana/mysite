@@ -1,3 +1,5 @@
+
+
 import plotly.express as px
 import streamlit as st
 
@@ -84,10 +86,10 @@ def display_bar_plot_with_colour(dset, column_to_count, column_counts, color_col
 def display_cumulative_plot(dset, column_to_count, column_counts, count_col):
     # Create a cumulative sum of the counts
     dset_cumul = (
-        dset[column_to_count]
+        dset.loc[:, [column_to_count, count_col]]
+        .groupby([column_to_count, count_col])
         .value_counts()
         .to_frame(name=column_counts)
-        .rename_axis(column_to_count)
         .sort_index()
     )
 
