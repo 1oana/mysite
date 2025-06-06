@@ -1,5 +1,3 @@
-
-
 import plotly.express as px
 import streamlit as st
 
@@ -13,7 +11,7 @@ def display_pie_chart(dset, column_to_count, column_counts):
         .rename_axis(column_to_count)
     )
     # change width of the table
-    st.write(dset_stats.style.set_table_attributes('style="width: 100%;"').hide_index())
+    st.dataframe(dset_stats.style.set_table_attributes('style="width: 100%;"'))
 
     fig = px.pie(
         dset_stats.reset_index(),
@@ -35,7 +33,7 @@ def display_bar_chart(dset, column_to_count, column_counts):
         .rename_axis(column_to_count)
     )
     # change width of the table
-    st.write(dset_stats.style.set_table_attributes('style="width: 100%;"').hide_index())
+    st.write(dset_stats.style.set_table_attributes('style="width: 100%;"'))
     fig = px.bar(
         dset_stats.reset_index(),
         x=column_to_count,
@@ -46,7 +44,9 @@ def display_bar_chart(dset, column_to_count, column_counts):
     st.plotly_chart(fig)
 
 
-def display_histogram(dset, column_to_count, column_counts, bin_width=None, color_col=None):
+def display_histogram(
+    dset, column_to_count, column_counts, bin_width=None, color_col=None
+):
     dset_stats = (
         dset[column_to_count]
         .value_counts()
