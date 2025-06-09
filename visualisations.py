@@ -83,21 +83,44 @@ def display_bar_plot_with_colour(dset, column_to_count, column_counts, color_col
     st.plotly_chart(fig)
 
 
-def display_cumulative_plot(dset, column_to_count, column_counts, count_col):
+def display_cumulative_plot(dset, column_to_cuml, column_counts, colour_col):
     # Create a cumulative sum of the counts
-    dset_cumul = (
-        dset.loc[:, [column_to_count, count_col]]
-        .groupby([column_to_count, count_col])
+    cuml_name = "Cumulative"
+    dset_cuml = (
+        dset.loc[:, [column_to_cuml, colour_col]]
+        .groupby([column_to_cuml, colour_col])
         .value_counts()
         .to_frame(name=column_counts)
         .sort_index()
     )
 
+    dset_cuml[cuml_name] = dset_cuml.groupby(level=0).cumsum()
+    dset_cuml = dset_cuml.sort_values(by=[column_to_cuml])
+
+    st.dataframe(
+        dset_cuml.reset_index().style.set_table_attributes('style="width: 100%;"')
+    )
+
     fig = px.line(
-        dset_cumul.reset_index(),
-        x=column_to_count,
-        y=column_counts,
-        color=count_col,
+        dset_cuml.reset_index(),
+        x=column_to_cuml,
+        y=cuml_name,
+        color=colour_col,
         title="",
     )
     st.plotly_chart(fig)
+
+    # column_name = f"{event.capitalize()}s"
+    # index_name = "Date"
+    # stat = makestat(sdset, f"{event}_date", column_name, index_name)
+    # stat[cuml_name] = stat[column_name].cumsum(skipna=True)
+    # plt.plot(stat[cuml_name], label=f"{event.capitalize()}s")
+
+    # stat = makestat(sdset, "referral_date", column_name, index_name)
+    # stat[cuml_name] = stat[column_name].cumsum(skipna=True)
+    # plt.plot(stat[cuml_name], label="Referrals")
+    # plt.xticks(plt.xticks()[0], rotation=45, horizontalalignment="right", fontsize=5)
+    # plt.xlabel("Date")
+    # plt.legend()
+    # plt.show()
+

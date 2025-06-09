@@ -12,3 +12,6 @@ MASTO_ANON_COLS = [
     "Country",
     "Mastocytosis_Diagnosis_Status",
 ]
+
+DATE_COL = "Date"
+DATE_COL_FORMAT = "%d/%m/%Y"
