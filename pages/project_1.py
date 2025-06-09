@@ -20,14 +20,15 @@ def about():
 
     For data privacy reasons, I cannot share the dashboard itself, but I have replicated the
     functionality here, using data from Kaggle which I have augmented with some simulated
-    data of my own. I added assessor names, survey dates and lengths, and fabricated a set of 
+    data of my own. I added assessor names, survey dates and lengths, and fabricated a set of
     'expected' IDs as well as changing one ID such that there was a duplicate (X to X).
 
-    The data is not real, but the dashboard is a close approximation of the one I created for
-    the project. I have attempted to exlain the purpose of each section, and how it would be used in
-    practice.
+    The data is a mixture of real and simulated data. The dashboard is intended as a close
+    approximation of the one I created for the project. I have attempted to explain the purpose 
+    of each section, and how it would be used in practice.
 
-    The data is from the [Mastocytosis Patient Survey](kaggle.com/datasets/benroshan/mastocytosis-patient-survey)
+    The data is from the 
+    [Mastocytosis Patient Survey](kaggle.com/datasets/benroshan/mastocytosis-patient-survey)
     on Kaggle and contains survey data from patients with mastocytosis, a rare disease that affects
     the mast cells in the body. The survey includes questions about symptoms, demographics, and
     comorbidities.

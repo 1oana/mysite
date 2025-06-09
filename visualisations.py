@@ -86,29 +86,34 @@ def display_bar_plot_with_colour(dset, column_to_count, column_counts, color_col
 def display_cumulative_plot(dset, column_to_cuml, column_counts, colour_col):
     # Create a cumulative sum of the counts
     cuml_name = "Cumulative"
-    dset_cuml = (
-        dset.loc[:, [column_to_cuml, colour_col]]
-        .groupby([column_to_cuml, colour_col])
-        .value_counts()
-        .to_frame(name=column_counts)
-        .sort_index()
-    )
+    
+    for category in dset[colour_col].unique():
+        subset = dset[dset[colour_col] == category]
+    
+        dset_cuml = (
+            subset.loc[:, [column_to_cuml, colour_col]]
+            .groupby([column_to_cuml, colour_col])
+            .value_counts()
+            .to_frame(name=column_counts)
+            .sort_index()
+        )
 
-    dset_cuml[cuml_name] = dset_cuml.groupby(level=0).cumsum()
-    dset_cuml = dset_cuml.sort_values(by=[column_to_cuml])
+        dset_cuml[cuml_name] = dset_cuml[column_counts].cumsum()
+        dset_cuml = dset_cuml.sort_values(by=[column_to_cuml])
 
-    st.dataframe(
-        dset_cuml.reset_index().style.set_table_attributes('style="width: 100%;"')
-    )
+        st.dataframe(
+            dset_cuml.reset_index().style.set_table_attributes('style="width: 100%;"')
+        )
 
-    fig = px.line(
-        dset_cuml.reset_index(),
-        x=column_to_cuml,
-        y=cuml_name,
-        color=colour_col,
-        title="",
-    )
-    st.plotly_chart(fig)
+        fig = px.bar(
+            dset_cuml.reset_index(),
+            x=column_to_cuml,
+            y=cuml_name,
+            color=colour_col,
+            title="",
+        )
+
+        st.plotly_chart(fig)
 
     # column_name = f"{event.capitalize()}s"
     # index_name = "Date"
