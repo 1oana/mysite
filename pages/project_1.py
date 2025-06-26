@@ -9,7 +9,7 @@ def load_data(filename):
     return data
 
 
-def about():
+def about(data):
     st.title("About")
     st.markdown("""
     A large part of my role within the Oxford Epilepsy Group involved overseeing deployment of a
@@ -27,7 +27,7 @@ def about():
     approximation of the one I created for the project. I have attempted to explain the purpose 
     of each section, and how it would be used in practice.
 
-    The data is from the 
+    The data is from the
     [Mastocytosis Patient Survey](kaggle.com/datasets/benroshan/mastocytosis-patient-survey)
     on Kaggle and contains survey data from patients with mastocytosis, a rare disease that affects
     the mast cells in the body. The survey includes questions about symptoms, demographics, and
@@ -193,13 +193,13 @@ def modelling(data):
     # Add more modelling checks here
 
 
-def project_1():
+def project_1(data):
     st.title("Project 1: Dashboard")
     tabs = st.tabs(
         ["About", "Demographics & Statistics", "Quality Control", "Modelling"]
     )
     with tabs[0]:
-        about()
+        about(data)
     with tabs[1]:
         demogs(data)
     with tabs[2]:
@@ -219,4 +219,4 @@ if __name__ == "__main__":
     # Display the data
 
     # Display the dashboard
-    project_1()
+    project_1(data)
