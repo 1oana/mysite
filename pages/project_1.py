@@ -190,7 +190,42 @@ def modelling(data):
     use the data to build a predictive model that could become an at-home screening app.
     We are really limited by the size of the dataset, so it's an interesting exercise!
     """)
-    # Add more modelling checks here
+    step_1_expander = st.expander("Step 1: Data Preparation")
+    with step_1_expander:
+        st.write("""
+        In this step, we would prepare the data for modelling. This would involve cleaning the data,
+        handling missing values, and encoding categorical variables.
+        """)
+        st.dataframe(data[dt.MASTO_ANON_COLS].head(10))
+    step_2_expander = st.expander("Step 2: Train-Test Split")
+    with step_2_expander:
+        st.write("""
+        In this step, we would split the data into training and testing sets. This is important
+        to ensure that our model is able to generalize to new data.
+        """)
+    step_3_expander = st.expander("Step 3: Training a Naive Model")
+    with step_3_expander:
+        st.write("""
+        In this step, we would train the model using the training data. 
+        I'm going to do this in the simplest possible way.
+        """)
+    step_4_expander = st.expander("Step 4: A More Intelligent Model")
+    with step_4_expander:
+        st.write("""
+        In this step, we would train a more complex model using the training data. 
+        This would involve using a more sophisticated algorithm.
+        We could also use cross-validation to ensure that our model is robust, and
+        weighting the data to account for the demographic imbalance.
+        """)
+    step_5_expander = st.expander("Step 5: An At-Home Screening App")
+    with step_5_expander:
+        st.write("""
+        In this step, we would deploy the model as an at-home screening app. 
+        This would involve creating a user interface and integrating the model into the app.
+        We could also use the app to collect data from users, which could be used to improve the model.
+        
+        Considerations include transparency and usability.
+        """)
 
 
 def project_1(data):
