@@ -1,11 +1,16 @@
 import visualisations as viz
+import streamlit as st
+import pandas as pd
 import details as dt
+import modelling as mod
 
 
 def load_data(filename):
     # Load the data from a CSV file
     data = pd.read_csv(filename)
-    data[dt.DATE_COL] = pd.to_datetime(data[dt.DATE_COL], format=dt.DATE_COL_FORMAT, errors="coerce")
+    data[dt.DATE_COL] = pd.to_datetime(
+        data[dt.DATE_COL], format=dt.DATE_COL_FORMAT, errors="coerce"
+    )
     return data
 
 
@@ -190,14 +195,32 @@ def modelling(data):
     use the data to build a predictive model that could become an at-home screening app.
     We are really limited by the size of the dataset, so it's an interesting exercise!
     """)
+    cleaned_data = mod.prepare_data(data, dt.MASTO_INFO_DICT)
+    # cleaned_data = data.copy()
+    
     step_1_expander = st.expander("Step 1: Data Preparation")
     with step_1_expander:
         st.write("""
         In this step, we would prepare the data for modelling. This would involve cleaning the data,
         handling missing values, and encoding categorical variables.
+        
+        Complete list of steps:
+        - Numerical values as floats or ints, whichever is most appropriate
+        - Categorical variables as strings or integers, depending on the model
+        - Dates as datetime objects
+        - Some columns are recorded as lists, so we would need to split these into separate columns
         """)
-        st.dataframe(data[dt.MASTO_ANON_COLS].head(10))
+
+        before_after_tabs = st.tabs(["Before", "After"])
+        with before_after_tabs[0]:
+            st.write("Data before preparation:")
+            st.dataframe(data.head())
+        with before_after_tabs[1]:
+            st.write("Data after preparation:")
+            # Assuming prepare_data is a function that prepares the data
+            st.dataframe(cleaned_data.head())
     step_2_expander = st.expander("Step 2: Train-Test Split")
+
     with step_2_expander:
         st.write("""
         In this step, we would split the data into training and testing sets. This is important
